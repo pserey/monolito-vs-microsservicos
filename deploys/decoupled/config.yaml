@@ -1,0 +1,51 @@
+appConfig: weaver.toml
+repo: docker.io/pserey
+
+listeners:
+  - name: boutique
+    public: true
+
+groups:
+  - name: frontend
+    components:
+      - github.com/ServiceWeaver/weaver/Main
+
+  - name: cart
+    components:
+      - github.com/ServiceWeaver/onlineboutique/cartservice/CartService
+
+  - name: cartcache
+    components:
+      - github.com/ServiceWeaver/onlineboutique/cartservice/cartCache
+
+  - name: checkout
+    components:
+      - github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService
+
+  - name: currency
+    components:
+      - github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService
+
+  - name: email
+    components:
+      - github.com/ServiceWeaver/onlineboutique/emailservice/EmailService
+
+  - name: shipping
+    components:
+      - github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService
+
+  - name: ads
+    components:
+      - github.com/ServiceWeaver/onlineboutique/adservice/AdService
+
+  - name: payment
+    components:
+      - github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService
+
+  - name: catalog
+    components:
+      - github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService
+
+  - name: recommendation
+    components:
+      - github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService
