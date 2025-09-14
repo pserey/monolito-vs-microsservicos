@@ -2,20 +2,20 @@
 # application:
 #
 #     app: onlineboutique
-#     version: 16f0d057
+#     version: a1bad42f
 #     components groups:
 #     - 
-#       - github.com/ServiceWeaver/onlineboutique/adservice/AdService
-#       - github.com/ServiceWeaver/onlineboutique/cartservice/CartService
-#       - github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService
-#       - github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService
+#       - github.com/ServiceWeaver/onlineboutique/emailservice/EmailService
+#       - github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService
 #       - github.com/ServiceWeaver/weaver/Main
 #       - github.com/ServiceWeaver/onlineboutique/cartservice/cartCache
 #       - github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService
-#       - github.com/ServiceWeaver/onlineboutique/emailservice/EmailService
+#       - github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService
+#       - github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService
 #       - github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService
 #       - github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService
-#       - github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService
+#       - github.com/ServiceWeaver/onlineboutique/adservice/AdService
+#       - github.com/ServiceWeaver/onlineboutique/cartservice/CartService
 #     listeners:
 #     - boutique
 #
@@ -28,19 +28,19 @@
 #
 # To deploy these resources, run:
 #
-#     kubectl apply -f /tmp/kube_16f0d057.yaml
+#     kubectl apply -f /tmp/kube_a1bad42f.yaml
 #
 # To view the deployed resources, run:
 #
-#     kubectl get all,configmaps --selector=serviceweaver/version=16f0d057
+#     kubectl get all,configmaps --selector=serviceweaver/version=a1bad42f
 #
 # To view a description of every resource, run:
 #
-#     kubectl get all,configmaps --selector=serviceweaver/version=16f0d057 -o custom-columns=KIND:.kind,NAME:.metadata.name,APP:.metadata.labels.serviceweaver/app,VERSION:.metadata.labels.serviceweaver/version,DESCRIPTION:.metadata.annotations.description
+#     kubectl get all,configmaps --selector=serviceweaver/version=a1bad42f -o custom-columns=KIND:.kind,NAME:.metadata.name,APP:.metadata.labels.serviceweaver/app,VERSION:.metadata.labels.serviceweaver/version,DESCRIPTION:.metadata.annotations.description
 #
 # To delete the resources, run:
 #
-#     kubectl delete all,configmaps --selector=serviceweaver/version=16f0d057
+#     kubectl delete all,configmaps --selector=serviceweaver/version=a1bad42f
 
 
 # Roles.
@@ -84,60 +84,60 @@ subjects:
 apiVersion: v1
 data:
   config.textpb: |
-    namespace:  "default"
-    deployment_id:  "16f0d057-cd9f-47f1-a103-44ab87cbbd0b"
-    listeners:  {
-      key:  "boutique"
-      value:  20000
+    namespace: "default"
+    deployment_id: "a1bad42f-5414-4b39-8927-1569674fd53f"
+    listeners: {
+      key: "boutique"
+      value: 20000
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/adservice/AdService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/adservice/AdService"
+      value: "monolith"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/cartservice/CartService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService"
+      value: "monolith"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache"
+      value: "monolith"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService"
+      value: "monolith"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService"
+      value: "monolith"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/emailservice/EmailService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/emailservice/EmailService"
+      value: "monolith"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService"
+      value: "monolith"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService"
+      value: "monolith"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService"
+      value: "monolith"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService"
+      value: "monolith"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/weaver/Main"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/weaver/Main"
+      value: "monolith"
     }
-    telemetry:  {
-      metrics:  {
-        export_interval:  {
-          seconds:  30
+    telemetry: {
+      metrics: {
+        export_interval: {
+          seconds: 30
         }
       }
     }
@@ -159,12 +159,12 @@ kind: ConfigMap
 metadata:
   annotations:
     description: This ConfigMap contains config files for app "onlineboutique" version
-      "16f0d057".
+      "a1bad42f".
   creationTimestamp: null
   labels:
     serviceweaver/app: onlineboutique
-    serviceweaver/version: 16f0d057
-  name: config-16f0d057
+    serviceweaver/version: a1bad42f
+  name: config-a1bad42f
   namespace: default
 
 ---
@@ -179,8 +179,8 @@ metadata:
   labels:
     serviceweaver/app: onlineboutique
     serviceweaver/listener: boutique
-    serviceweaver/version: 16f0d057
-  name: boutique-16f0d057
+    serviceweaver/version: a1bad42f
+  name: boutique-a1bad42f
   namespace: default
 spec:
   ports:
@@ -188,7 +188,7 @@ spec:
     protocol: TCP
     targetPort: 20000
   selector:
-    serviceweaver/name: onlineboutique-monolith-16f0d057-c45b4462
+    serviceweaver/name: onlineboutique-monolith-a1bad42f-31f4c553
   type: LoadBalancer
 status:
   loadBalancer: {}
@@ -200,39 +200,40 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    description: This Deployment hosts components github.com/ServiceWeaver/onlineboutique/adservice/AdService,
-      github.com/ServiceWeaver/onlineboutique/cartservice/CartService, github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService,
-      github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService, github.com/ServiceWeaver/weaver/Main,
+    description: This Deployment hosts components github.com/ServiceWeaver/onlineboutique/emailservice/EmailService,
+      github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService, github.com/ServiceWeaver/weaver/Main,
       github.com/ServiceWeaver/onlineboutique/cartservice/cartCache, github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService,
-      github.com/ServiceWeaver/onlineboutique/emailservice/EmailService, github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService,
+      github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService, github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService,
+      github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService,
       github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService,
-      github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService.
+      github.com/ServiceWeaver/onlineboutique/adservice/AdService, github.com/ServiceWeaver/onlineboutique/cartservice/CartService.
   creationTimestamp: null
   labels:
     serviceweaver/app: onlineboutique
-    serviceweaver/version: 16f0d057
-  name: onlineboutique-monolith-16f0d057-c45b4462
+    serviceweaver/version: a1bad42f
+  name: onlineboutique-monolith-a1bad42f-31f4c553
   namespace: default
 spec:
   selector:
     matchLabels:
-      serviceweaver/name: onlineboutique-monolith-16f0d057-c45b4462
+      serviceweaver/name: onlineboutique-monolith-a1bad42f-31f4c553
   strategy: {}
   template:
     metadata:
       annotations:
-        description: This Pod hosts components github.com/ServiceWeaver/onlineboutique/adservice/AdService,
-          github.com/ServiceWeaver/onlineboutique/cartservice/CartService, github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService,
-          github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService, github.com/ServiceWeaver/weaver/Main,
-          github.com/ServiceWeaver/onlineboutique/cartservice/cartCache, github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService,
-          github.com/ServiceWeaver/onlineboutique/emailservice/EmailService, github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService,
+        description: This Pod hosts components github.com/ServiceWeaver/onlineboutique/emailservice/EmailService,
+          github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService,
+          github.com/ServiceWeaver/weaver/Main, github.com/ServiceWeaver/onlineboutique/cartservice/cartCache,
+          github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService,
+          github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService,
+          github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService, github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService,
           github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService,
-          github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService.
+          github.com/ServiceWeaver/onlineboutique/adservice/AdService, github.com/ServiceWeaver/onlineboutique/cartservice/CartService.
       creationTimestamp: null
       labels:
         serviceweaver/app: onlineboutique
-        serviceweaver/name: onlineboutique-monolith-16f0d057-c45b4462
-        serviceweaver/version: 16f0d057
+        serviceweaver/name: onlineboutique-monolith-a1bad42f-31f4c553
+        serviceweaver/version: a1bad42f
       namespace: default
     spec:
       affinity:
@@ -241,7 +242,7 @@ spec:
           - podAffinityTerm:
               labelSelector:
                 matchLabels:
-                  serviceweaver/name: onlineboutique-monolith-16f0d057-c45b4462
+                  serviceweaver/name: onlineboutique-monolith-a1bad42f-31f4c553
               topologyKey: kubernetes.io/hostname
             weight: 100
       containers:
@@ -249,24 +250,28 @@ spec:
         - babysitter
         - /weaver/weaver.toml
         - /weaver/config.textpb
-        - github.com/ServiceWeaver/onlineboutique/adservice/AdService
-        - github.com/ServiceWeaver/onlineboutique/cartservice/CartService
-        - github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService
-        - github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService
+        - github.com/ServiceWeaver/onlineboutique/emailservice/EmailService
+        - github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService
         - github.com/ServiceWeaver/weaver/Main
         - github.com/ServiceWeaver/onlineboutique/cartservice/cartCache
         - github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService
-        - github.com/ServiceWeaver/onlineboutique/emailservice/EmailService
+        - github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService
+        - github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService
         - github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService
         - github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService
-        - github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService
-        image: docker.io/pserey/onlineboutique:16f0d057
+        - github.com/ServiceWeaver/onlineboutique/adservice/AdService
+        - github.com/ServiceWeaver/onlineboutique/cartservice/CartService
+        image: docker.io/pserey/onlineboutique:a1bad42f
         imagePullPolicy: IfNotPresent
         name: serviceweaver
         ports:
         - containerPort: 20000
           name: boutique
-        resources: {}
+        resources:
+          limits:
+            cpu: "1"
+          requests:
+            cpu: 250m
         stdin: true
         tty: true
         volumeMounts:
@@ -280,7 +285,7 @@ spec:
       serviceAccountName: default
       volumes:
       - configMap:
-          name: config-16f0d057
+          name: config-a1bad42f
         name: config
 status: {}
 
@@ -291,28 +296,49 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   annotations:
-    description: This HorizontalPodAutoscaler scales the "onlineboutique-monolith-16f0d057-c45b4462"
+    description: This HorizontalPodAutoscaler scales the "onlineboutique-monolith-a1bad42f-31f4c553"
       Deployment.
   creationTimestamp: null
   labels:
     serviceweaver/app: onlineboutique
-    serviceweaver/version: 16f0d057
-  name: onlineboutique-monolith-16f0d057-c45b4462
+    serviceweaver/version: a1bad42f
+  name: onlineboutique-monolith-a1bad42f-31f4c553
   namespace: default
 spec:
+  behavior:
+    scaleDown:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 50
+      - periodSeconds: 60
+        type: Pods
+        value: 2
+      selectPolicy: Max
+      stabilizationWindowSeconds: 300
+    scaleUp:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 100
+      - periodSeconds: 60
+        type: Pods
+        value: 4
+      selectPolicy: Max
+      stabilizationWindowSeconds: 0
   maxReplicas: 10
   metrics:
   - resource:
       name: cpu
       target:
-        averageUtilization: 80
+        averageUtilization: 60
         type: Utilization
     type: Resource
-  minReplicas: 1
+  minReplicas: 2
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: onlineboutique-monolith-16f0d057-c45b4462
+    name: onlineboutique-monolith-a1bad42f-31f4c553
 status:
   currentMetrics: null
   desiredReplicas: 0

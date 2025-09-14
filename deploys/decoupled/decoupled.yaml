@@ -2,19 +2,29 @@
 # application:
 #
 #     app: onlineboutique
-#     version: 9a8f480c
+#     version: 4c4eb2be
 #     components groups:
 #     - 
-#       - github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService
-#       - github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService
-#       - github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService
-#       - github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService
-#       - github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService
-#       - github.com/ServiceWeaver/weaver/Main
 #       - github.com/ServiceWeaver/onlineboutique/adservice/AdService
+#     - 
 #       - github.com/ServiceWeaver/onlineboutique/cartservice/CartService
+#     - 
 #       - github.com/ServiceWeaver/onlineboutique/cartservice/cartCache
+#     - 
+#       - github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService
+#     - 
+#       - github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService
+#     - 
+#       - github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService
+#     - 
 #       - github.com/ServiceWeaver/onlineboutique/emailservice/EmailService
+#     - 
+#       - github.com/ServiceWeaver/weaver/Main
+#     - 
+#       - github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService
+#     - 
+#       - github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService
+#     - 
 #       - github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService
 #     listeners:
 #     - boutique
@@ -28,19 +38,19 @@
 #
 # To deploy these resources, run:
 #
-#     kubectl apply -f /tmp/kube_9a8f480c.yaml
+#     kubectl apply -f /tmp/kube_4c4eb2be.yaml
 #
 # To view the deployed resources, run:
 #
-#     kubectl get all,configmaps --selector=serviceweaver/version=9a8f480c
+#     kubectl get all,configmaps --selector=serviceweaver/version=4c4eb2be
 #
 # To view a description of every resource, run:
 #
-#     kubectl get all,configmaps --selector=serviceweaver/version=9a8f480c -o custom-columns=KIND:.kind,NAME:.metadata.name,APP:.metadata.labels.serviceweaver/app,VERSION:.metadata.labels.serviceweaver/version,DESCRIPTION:.metadata.annotations.description
+#     kubectl get all,configmaps --selector=serviceweaver/version=4c4eb2be -o custom-columns=KIND:.kind,NAME:.metadata.name,APP:.metadata.labels.serviceweaver/app,VERSION:.metadata.labels.serviceweaver/version,DESCRIPTION:.metadata.annotations.description
 #
 # To delete the resources, run:
 #
-#     kubectl delete all,configmaps --selector=serviceweaver/version=9a8f480c
+#     kubectl delete all,configmaps --selector=serviceweaver/version=4c4eb2be
 
 
 # Roles.
@@ -84,60 +94,60 @@ subjects:
 apiVersion: v1
 data:
   config.textpb: |
-    namespace:  "default"
-    deployment_id:  "9a8f480c-5d15-44a6-bbd5-b97cd274d62c"
-    listeners:  {
-      key:  "boutique"
-      value:  20000
+    namespace: "default"
+    deployment_id: "4c4eb2be-6e08-48b3-b12d-55de51f57863"
+    listeners: {
+      key: "boutique"
+      value: 20000
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/adservice/AdService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/adservice/AdService"
+      value: "ads"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/cartservice/CartService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService"
+      value: "cart"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache"
+      value: "cartcache"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService"
+      value: "checkout"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService"
+      value: "currency"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/emailservice/EmailService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/emailservice/EmailService"
+      value: "email"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService"
+      value: "payment"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService"
+      value: "catalog"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService"
+      value: "recommendation"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService"
+      value: "shipping"
     }
-    groups:  {
-      key:  "github.com/ServiceWeaver/weaver/Main"
-      value:  "monolith"
+    groups: {
+      key: "github.com/ServiceWeaver/weaver/Main"
+      value: "frontend"
     }
-    telemetry:  {
-      metrics:  {
-        export_interval:  {
-          seconds:  30
+    telemetry: {
+      metrics: {
+        export_interval: {
+          seconds: 30
         }
       }
     }
@@ -159,80 +169,42 @@ kind: ConfigMap
 metadata:
   annotations:
     description: This ConfigMap contains config files for app "onlineboutique" version
-      "9a8f480c".
+      "4c4eb2be".
   creationTimestamp: null
   labels:
     serviceweaver/app: onlineboutique
-    serviceweaver/version: 9a8f480c
-  name: config-9a8f480c
+    serviceweaver/version: 4c4eb2be
+  name: config-4c4eb2be
   namespace: default
 
 ---
 
-# Listener Service for group monolith
-apiVersion: v1
-kind: Service
-metadata:
-  annotations:
-    description: This Service forwards traffic to the "boutique" listener.
-  creationTimestamp: null
-  labels:
-    serviceweaver/app: onlineboutique
-    serviceweaver/listener: boutique
-    serviceweaver/version: 9a8f480c
-  name: boutique-9a8f480c
-  namespace: default
-spec:
-  ports:
-  - port: 80
-    protocol: TCP
-    targetPort: 20000
-  selector:
-    serviceweaver/name: onlineboutique-monolith-9a8f480c-4c3886ba
-  type: LoadBalancer
-status:
-  loadBalancer: {}
-
----
-
-# Deployment for group monolith
+# Deployment for group ads
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    description: This Deployment hosts components github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService,
-      github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService, github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService,
-      github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService,
-      github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService,
-      github.com/ServiceWeaver/weaver/Main, github.com/ServiceWeaver/onlineboutique/adservice/AdService,
-      github.com/ServiceWeaver/onlineboutique/cartservice/CartService, github.com/ServiceWeaver/onlineboutique/cartservice/cartCache,
-      github.com/ServiceWeaver/onlineboutique/emailservice/EmailService, github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService.
+    description: This Deployment hosts components github.com/ServiceWeaver/onlineboutique/adservice/AdService.
   creationTimestamp: null
   labels:
     serviceweaver/app: onlineboutique
-    serviceweaver/version: 9a8f480c
-  name: onlineboutique-monolith-9a8f480c-4c3886ba
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-ads-4c4eb2be-73531ace
   namespace: default
 spec:
   selector:
     matchLabels:
-      serviceweaver/name: onlineboutique-monolith-9a8f480c-4c3886ba
+      serviceweaver/name: onlineboutique-ads-4c4eb2be-73531ace
   strategy: {}
   template:
     metadata:
       annotations:
-        description: This Pod hosts components github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService,
-          github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService,
-          github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService, github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService,
-          github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService,
-          github.com/ServiceWeaver/weaver/Main, github.com/ServiceWeaver/onlineboutique/adservice/AdService,
-          github.com/ServiceWeaver/onlineboutique/cartservice/CartService, github.com/ServiceWeaver/onlineboutique/cartservice/cartCache,
-          github.com/ServiceWeaver/onlineboutique/emailservice/EmailService, github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService.
+        description: This Pod hosts components github.com/ServiceWeaver/onlineboutique/adservice/AdService.
       creationTimestamp: null
       labels:
         serviceweaver/app: onlineboutique
-        serviceweaver/name: onlineboutique-monolith-9a8f480c-4c3886ba
-        serviceweaver/version: 9a8f480c
+        serviceweaver/name: onlineboutique-ads-4c4eb2be-73531ace
+        serviceweaver/version: 4c4eb2be
       namespace: default
     spec:
       affinity:
@@ -241,7 +213,7 @@ spec:
           - podAffinityTerm:
               labelSelector:
                 matchLabels:
-                  serviceweaver/name: onlineboutique-monolith-9a8f480c-4c3886ba
+                  serviceweaver/name: onlineboutique-ads-4c4eb2be-73531ace
               topologyKey: kubernetes.io/hostname
             weight: 100
       containers:
@@ -249,24 +221,15 @@ spec:
         - babysitter
         - /weaver/weaver.toml
         - /weaver/config.textpb
-        - github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService
-        - github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService
-        - github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService
-        - github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService
-        - github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService
-        - github.com/ServiceWeaver/weaver/Main
         - github.com/ServiceWeaver/onlineboutique/adservice/AdService
-        - github.com/ServiceWeaver/onlineboutique/cartservice/CartService
-        - github.com/ServiceWeaver/onlineboutique/cartservice/cartCache
-        - github.com/ServiceWeaver/onlineboutique/emailservice/EmailService
-        - github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService
-        image: docker.io/pserey/onlineboutique:9a8f480c
+        image: docker.io/pserey/onlineboutique:4c4eb2be
         imagePullPolicy: IfNotPresent
         name: serviceweaver
-        ports:
-        - containerPort: 20000
-          name: boutique
-        resources: {}
+        resources:
+          limits:
+            cpu: "1"
+          requests:
+            cpu: 100m
         stdin: true
         tty: true
         volumeMounts:
@@ -280,39 +243,1329 @@ spec:
       serviceAccountName: default
       volumes:
       - configMap:
-          name: config-9a8f480c
+          name: config-4c4eb2be
         name: config
 status: {}
 
 ---
 
-# Autoscaler for group monolith
+# Autoscaler for group ads
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   annotations:
-    description: This HorizontalPodAutoscaler scales the "onlineboutique-monolith-9a8f480c-4c3886ba"
+    description: This HorizontalPodAutoscaler scales the "onlineboutique-ads-4c4eb2be-73531ace"
       Deployment.
   creationTimestamp: null
   labels:
     serviceweaver/app: onlineboutique
-    serviceweaver/version: 9a8f480c
-  name: onlineboutique-monolith-9a8f480c-4c3886ba
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-ads-4c4eb2be-73531ace
   namespace: default
 spec:
+  behavior:
+    scaleDown:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 50
+      - periodSeconds: 60
+        type: Pods
+        value: 2
+      selectPolicy: Max
+      stabilizationWindowSeconds: 300
+    scaleUp:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 100
+      - periodSeconds: 60
+        type: Pods
+        value: 4
+      selectPolicy: Max
+      stabilizationWindowSeconds: 0
   maxReplicas: 10
   metrics:
   - resource:
       name: cpu
       target:
-        averageUtilization: 80
+        averageUtilization: 60
         type: Utilization
     type: Resource
   minReplicas: 1
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: onlineboutique-monolith-9a8f480c-4c3886ba
+    name: onlineboutique-ads-4c4eb2be-73531ace
+status:
+  currentMetrics: null
+  desiredReplicas: 0
+
+---
+
+# Deployment for group cart
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    description: This Deployment hosts components github.com/ServiceWeaver/onlineboutique/cartservice/CartService.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-cart-4c4eb2be-a33627de
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      serviceweaver/name: onlineboutique-cart-4c4eb2be-a33627de
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        description: This Pod hosts components github.com/ServiceWeaver/onlineboutique/cartservice/CartService.
+      creationTimestamp: null
+      labels:
+        serviceweaver/app: onlineboutique
+        serviceweaver/name: onlineboutique-cart-4c4eb2be-a33627de
+        serviceweaver/version: 4c4eb2be
+      namespace: default
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  serviceweaver/name: onlineboutique-cart-4c4eb2be-a33627de
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      containers:
+      - args:
+        - babysitter
+        - /weaver/weaver.toml
+        - /weaver/config.textpb
+        - github.com/ServiceWeaver/onlineboutique/cartservice/CartService
+        image: docker.io/pserey/onlineboutique:4c4eb2be
+        imagePullPolicy: IfNotPresent
+        name: serviceweaver
+        resources:
+          limits:
+            cpu: "1"
+          requests:
+            cpu: 100m
+        stdin: true
+        tty: true
+        volumeMounts:
+        - mountPath: /weaver/weaver.toml
+          name: config
+          subPath: weaver.toml
+        - mountPath: /weaver/config.textpb
+          name: config
+          subPath: config.textpb
+      dnsPolicy: ClusterFirst
+      serviceAccountName: default
+      volumes:
+      - configMap:
+          name: config-4c4eb2be
+        name: config
+status: {}
+
+---
+
+# Autoscaler for group cart
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+    description: This HorizontalPodAutoscaler scales the "onlineboutique-cart-4c4eb2be-a33627de"
+      Deployment.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-cart-4c4eb2be-a33627de
+  namespace: default
+spec:
+  behavior:
+    scaleDown:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 50
+      - periodSeconds: 60
+        type: Pods
+        value: 2
+      selectPolicy: Max
+      stabilizationWindowSeconds: 300
+    scaleUp:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 100
+      - periodSeconds: 60
+        type: Pods
+        value: 4
+      selectPolicy: Max
+      stabilizationWindowSeconds: 0
+  maxReplicas: 10
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 60
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: onlineboutique-cart-4c4eb2be-a33627de
+status:
+  currentMetrics: null
+  desiredReplicas: 0
+
+---
+
+# Deployment for group cartcache
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    description: This Deployment hosts components github.com/ServiceWeaver/onlineboutique/cartservice/cartCache.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-cartcache-4c4eb2be-e75c9623
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      serviceweaver/name: onlineboutique-cartcache-4c4eb2be-e75c9623
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        description: This Pod hosts components github.com/ServiceWeaver/onlineboutique/cartservice/cartCache.
+      creationTimestamp: null
+      labels:
+        serviceweaver/app: onlineboutique
+        serviceweaver/name: onlineboutique-cartcache-4c4eb2be-e75c9623
+        serviceweaver/version: 4c4eb2be
+      namespace: default
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  serviceweaver/name: onlineboutique-cartcache-4c4eb2be-e75c9623
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      containers:
+      - args:
+        - babysitter
+        - /weaver/weaver.toml
+        - /weaver/config.textpb
+        - github.com/ServiceWeaver/onlineboutique/cartservice/cartCache
+        image: docker.io/pserey/onlineboutique:4c4eb2be
+        imagePullPolicy: IfNotPresent
+        name: serviceweaver
+        resources:
+          limits:
+            cpu: "1"
+          requests:
+            cpu: 100m
+        stdin: true
+        tty: true
+        volumeMounts:
+        - mountPath: /weaver/weaver.toml
+          name: config
+          subPath: weaver.toml
+        - mountPath: /weaver/config.textpb
+          name: config
+          subPath: config.textpb
+      dnsPolicy: ClusterFirst
+      serviceAccountName: default
+      volumes:
+      - configMap:
+          name: config-4c4eb2be
+        name: config
+status: {}
+
+---
+
+# Autoscaler for group cartcache
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+    description: This HorizontalPodAutoscaler scales the "onlineboutique-cartcache-4c4eb2be-e75c9623"
+      Deployment.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-cartcache-4c4eb2be-e75c9623
+  namespace: default
+spec:
+  behavior:
+    scaleDown:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 50
+      - periodSeconds: 60
+        type: Pods
+        value: 2
+      selectPolicy: Max
+      stabilizationWindowSeconds: 300
+    scaleUp:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 100
+      - periodSeconds: 60
+        type: Pods
+        value: 4
+      selectPolicy: Max
+      stabilizationWindowSeconds: 0
+  maxReplicas: 10
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 60
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: onlineboutique-cartcache-4c4eb2be-e75c9623
+status:
+  currentMetrics: null
+  desiredReplicas: 0
+
+---
+
+# Deployment for group catalog
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    description: This Deployment hosts components github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-catalog-4c4eb2be-22c5a8b5
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      serviceweaver/name: onlineboutique-catalog-4c4eb2be-22c5a8b5
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        description: This Pod hosts components github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService.
+      creationTimestamp: null
+      labels:
+        serviceweaver/app: onlineboutique
+        serviceweaver/name: onlineboutique-catalog-4c4eb2be-22c5a8b5
+        serviceweaver/version: 4c4eb2be
+      namespace: default
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  serviceweaver/name: onlineboutique-catalog-4c4eb2be-22c5a8b5
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      containers:
+      - args:
+        - babysitter
+        - /weaver/weaver.toml
+        - /weaver/config.textpb
+        - github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService
+        image: docker.io/pserey/onlineboutique:4c4eb2be
+        imagePullPolicy: IfNotPresent
+        name: serviceweaver
+        resources:
+          limits:
+            cpu: "1"
+          requests:
+            cpu: 100m
+        stdin: true
+        tty: true
+        volumeMounts:
+        - mountPath: /weaver/weaver.toml
+          name: config
+          subPath: weaver.toml
+        - mountPath: /weaver/config.textpb
+          name: config
+          subPath: config.textpb
+      dnsPolicy: ClusterFirst
+      serviceAccountName: default
+      volumes:
+      - configMap:
+          name: config-4c4eb2be
+        name: config
+status: {}
+
+---
+
+# Autoscaler for group catalog
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+    description: This HorizontalPodAutoscaler scales the "onlineboutique-catalog-4c4eb2be-22c5a8b5"
+      Deployment.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-catalog-4c4eb2be-22c5a8b5
+  namespace: default
+spec:
+  behavior:
+    scaleDown:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 50
+      - periodSeconds: 60
+        type: Pods
+        value: 2
+      selectPolicy: Max
+      stabilizationWindowSeconds: 300
+    scaleUp:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 100
+      - periodSeconds: 60
+        type: Pods
+        value: 4
+      selectPolicy: Max
+      stabilizationWindowSeconds: 0
+  maxReplicas: 10
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 60
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: onlineboutique-catalog-4c4eb2be-22c5a8b5
+status:
+  currentMetrics: null
+  desiredReplicas: 0
+
+---
+
+# Deployment for group checkout
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    description: This Deployment hosts components github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-checkout-4c4eb2be-adbfe1ec
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      serviceweaver/name: onlineboutique-checkout-4c4eb2be-adbfe1ec
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        description: This Pod hosts components github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService.
+      creationTimestamp: null
+      labels:
+        serviceweaver/app: onlineboutique
+        serviceweaver/name: onlineboutique-checkout-4c4eb2be-adbfe1ec
+        serviceweaver/version: 4c4eb2be
+      namespace: default
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  serviceweaver/name: onlineboutique-checkout-4c4eb2be-adbfe1ec
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      containers:
+      - args:
+        - babysitter
+        - /weaver/weaver.toml
+        - /weaver/config.textpb
+        - github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService
+        image: docker.io/pserey/onlineboutique:4c4eb2be
+        imagePullPolicy: IfNotPresent
+        name: serviceweaver
+        resources:
+          limits:
+            cpu: "1"
+          requests:
+            cpu: 100m
+        stdin: true
+        tty: true
+        volumeMounts:
+        - mountPath: /weaver/weaver.toml
+          name: config
+          subPath: weaver.toml
+        - mountPath: /weaver/config.textpb
+          name: config
+          subPath: config.textpb
+      dnsPolicy: ClusterFirst
+      serviceAccountName: default
+      volumes:
+      - configMap:
+          name: config-4c4eb2be
+        name: config
+status: {}
+
+---
+
+# Autoscaler for group checkout
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+    description: This HorizontalPodAutoscaler scales the "onlineboutique-checkout-4c4eb2be-adbfe1ec"
+      Deployment.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-checkout-4c4eb2be-adbfe1ec
+  namespace: default
+spec:
+  behavior:
+    scaleDown:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 50
+      - periodSeconds: 60
+        type: Pods
+        value: 2
+      selectPolicy: Max
+      stabilizationWindowSeconds: 300
+    scaleUp:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 100
+      - periodSeconds: 60
+        type: Pods
+        value: 4
+      selectPolicy: Max
+      stabilizationWindowSeconds: 0
+  maxReplicas: 10
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 60
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: onlineboutique-checkout-4c4eb2be-adbfe1ec
+status:
+  currentMetrics: null
+  desiredReplicas: 0
+
+---
+
+# Deployment for group currency
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    description: This Deployment hosts components github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-currency-4c4eb2be-41f4a560
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      serviceweaver/name: onlineboutique-currency-4c4eb2be-41f4a560
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        description: This Pod hosts components github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService.
+      creationTimestamp: null
+      labels:
+        serviceweaver/app: onlineboutique
+        serviceweaver/name: onlineboutique-currency-4c4eb2be-41f4a560
+        serviceweaver/version: 4c4eb2be
+      namespace: default
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  serviceweaver/name: onlineboutique-currency-4c4eb2be-41f4a560
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      containers:
+      - args:
+        - babysitter
+        - /weaver/weaver.toml
+        - /weaver/config.textpb
+        - github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService
+        image: docker.io/pserey/onlineboutique:4c4eb2be
+        imagePullPolicy: IfNotPresent
+        name: serviceweaver
+        resources:
+          limits:
+            cpu: "1"
+          requests:
+            cpu: 100m
+        stdin: true
+        tty: true
+        volumeMounts:
+        - mountPath: /weaver/weaver.toml
+          name: config
+          subPath: weaver.toml
+        - mountPath: /weaver/config.textpb
+          name: config
+          subPath: config.textpb
+      dnsPolicy: ClusterFirst
+      serviceAccountName: default
+      volumes:
+      - configMap:
+          name: config-4c4eb2be
+        name: config
+status: {}
+
+---
+
+# Autoscaler for group currency
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+    description: This HorizontalPodAutoscaler scales the "onlineboutique-currency-4c4eb2be-41f4a560"
+      Deployment.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-currency-4c4eb2be-41f4a560
+  namespace: default
+spec:
+  behavior:
+    scaleDown:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 50
+      - periodSeconds: 60
+        type: Pods
+        value: 2
+      selectPolicy: Max
+      stabilizationWindowSeconds: 300
+    scaleUp:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 100
+      - periodSeconds: 60
+        type: Pods
+        value: 4
+      selectPolicy: Max
+      stabilizationWindowSeconds: 0
+  maxReplicas: 10
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 60
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: onlineboutique-currency-4c4eb2be-41f4a560
+status:
+  currentMetrics: null
+  desiredReplicas: 0
+
+---
+
+# Deployment for group email
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    description: This Deployment hosts components github.com/ServiceWeaver/onlineboutique/emailservice/EmailService.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-email-4c4eb2be-fcd92e28
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      serviceweaver/name: onlineboutique-email-4c4eb2be-fcd92e28
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        description: This Pod hosts components github.com/ServiceWeaver/onlineboutique/emailservice/EmailService.
+      creationTimestamp: null
+      labels:
+        serviceweaver/app: onlineboutique
+        serviceweaver/name: onlineboutique-email-4c4eb2be-fcd92e28
+        serviceweaver/version: 4c4eb2be
+      namespace: default
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  serviceweaver/name: onlineboutique-email-4c4eb2be-fcd92e28
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      containers:
+      - args:
+        - babysitter
+        - /weaver/weaver.toml
+        - /weaver/config.textpb
+        - github.com/ServiceWeaver/onlineboutique/emailservice/EmailService
+        image: docker.io/pserey/onlineboutique:4c4eb2be
+        imagePullPolicy: IfNotPresent
+        name: serviceweaver
+        resources:
+          limits:
+            cpu: "1"
+          requests:
+            cpu: 100m
+        stdin: true
+        tty: true
+        volumeMounts:
+        - mountPath: /weaver/weaver.toml
+          name: config
+          subPath: weaver.toml
+        - mountPath: /weaver/config.textpb
+          name: config
+          subPath: config.textpb
+      dnsPolicy: ClusterFirst
+      serviceAccountName: default
+      volumes:
+      - configMap:
+          name: config-4c4eb2be
+        name: config
+status: {}
+
+---
+
+# Autoscaler for group email
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+    description: This HorizontalPodAutoscaler scales the "onlineboutique-email-4c4eb2be-fcd92e28"
+      Deployment.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-email-4c4eb2be-fcd92e28
+  namespace: default
+spec:
+  behavior:
+    scaleDown:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 50
+      - periodSeconds: 60
+        type: Pods
+        value: 2
+      selectPolicy: Max
+      stabilizationWindowSeconds: 300
+    scaleUp:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 100
+      - periodSeconds: 60
+        type: Pods
+        value: 4
+      selectPolicy: Max
+      stabilizationWindowSeconds: 0
+  maxReplicas: 10
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 60
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: onlineboutique-email-4c4eb2be-fcd92e28
+status:
+  currentMetrics: null
+  desiredReplicas: 0
+
+---
+
+# Listener Service for group frontend
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    description: This Service forwards traffic to the "boutique" listener.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/listener: boutique
+    serviceweaver/version: 4c4eb2be
+  name: boutique-4c4eb2be
+  namespace: default
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 20000
+  selector:
+    serviceweaver/name: onlineboutique-frontend-4c4eb2be-9712446c
+  type: LoadBalancer
+status:
+  loadBalancer: {}
+
+---
+
+# Deployment for group frontend
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    description: This Deployment hosts components github.com/ServiceWeaver/weaver/Main.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-frontend-4c4eb2be-9712446c
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      serviceweaver/name: onlineboutique-frontend-4c4eb2be-9712446c
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        description: This Pod hosts components github.com/ServiceWeaver/weaver/Main.
+      creationTimestamp: null
+      labels:
+        serviceweaver/app: onlineboutique
+        serviceweaver/name: onlineboutique-frontend-4c4eb2be-9712446c
+        serviceweaver/version: 4c4eb2be
+      namespace: default
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  serviceweaver/name: onlineboutique-frontend-4c4eb2be-9712446c
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      containers:
+      - args:
+        - babysitter
+        - /weaver/weaver.toml
+        - /weaver/config.textpb
+        - github.com/ServiceWeaver/weaver/Main
+        image: docker.io/pserey/onlineboutique:4c4eb2be
+        imagePullPolicy: IfNotPresent
+        name: serviceweaver
+        ports:
+        - containerPort: 20000
+          name: boutique
+        resources:
+          limits:
+            cpu: "1"
+          requests:
+            cpu: 100m
+        stdin: true
+        tty: true
+        volumeMounts:
+        - mountPath: /weaver/weaver.toml
+          name: config
+          subPath: weaver.toml
+        - mountPath: /weaver/config.textpb
+          name: config
+          subPath: config.textpb
+      dnsPolicy: ClusterFirst
+      serviceAccountName: default
+      volumes:
+      - configMap:
+          name: config-4c4eb2be
+        name: config
+status: {}
+
+---
+
+# Autoscaler for group frontend
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+    description: This HorizontalPodAutoscaler scales the "onlineboutique-frontend-4c4eb2be-9712446c"
+      Deployment.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-frontend-4c4eb2be-9712446c
+  namespace: default
+spec:
+  behavior:
+    scaleDown:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 50
+      - periodSeconds: 60
+        type: Pods
+        value: 2
+      selectPolicy: Max
+      stabilizationWindowSeconds: 300
+    scaleUp:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 100
+      - periodSeconds: 60
+        type: Pods
+        value: 4
+      selectPolicy: Max
+      stabilizationWindowSeconds: 0
+  maxReplicas: 10
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 60
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: onlineboutique-frontend-4c4eb2be-9712446c
+status:
+  currentMetrics: null
+  desiredReplicas: 0
+
+---
+
+# Deployment for group payment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    description: This Deployment hosts components github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-payment-4c4eb2be-e919a0e4
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      serviceweaver/name: onlineboutique-payment-4c4eb2be-e919a0e4
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        description: This Pod hosts components github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService.
+      creationTimestamp: null
+      labels:
+        serviceweaver/app: onlineboutique
+        serviceweaver/name: onlineboutique-payment-4c4eb2be-e919a0e4
+        serviceweaver/version: 4c4eb2be
+      namespace: default
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  serviceweaver/name: onlineboutique-payment-4c4eb2be-e919a0e4
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      containers:
+      - args:
+        - babysitter
+        - /weaver/weaver.toml
+        - /weaver/config.textpb
+        - github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService
+        image: docker.io/pserey/onlineboutique:4c4eb2be
+        imagePullPolicy: IfNotPresent
+        name: serviceweaver
+        resources:
+          limits:
+            cpu: "1"
+          requests:
+            cpu: 100m
+        stdin: true
+        tty: true
+        volumeMounts:
+        - mountPath: /weaver/weaver.toml
+          name: config
+          subPath: weaver.toml
+        - mountPath: /weaver/config.textpb
+          name: config
+          subPath: config.textpb
+      dnsPolicy: ClusterFirst
+      serviceAccountName: default
+      volumes:
+      - configMap:
+          name: config-4c4eb2be
+        name: config
+status: {}
+
+---
+
+# Autoscaler for group payment
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+    description: This HorizontalPodAutoscaler scales the "onlineboutique-payment-4c4eb2be-e919a0e4"
+      Deployment.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-payment-4c4eb2be-e919a0e4
+  namespace: default
+spec:
+  behavior:
+    scaleDown:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 50
+      - periodSeconds: 60
+        type: Pods
+        value: 2
+      selectPolicy: Max
+      stabilizationWindowSeconds: 300
+    scaleUp:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 100
+      - periodSeconds: 60
+        type: Pods
+        value: 4
+      selectPolicy: Max
+      stabilizationWindowSeconds: 0
+  maxReplicas: 10
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 60
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: onlineboutique-payment-4c4eb2be-e919a0e4
+status:
+  currentMetrics: null
+  desiredReplicas: 0
+
+---
+
+# Deployment for group recommendation
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    description: This Deployment hosts components github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-recommendation-4c4eb2be-c5b111c9
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      serviceweaver/name: onlineboutique-recommendation-4c4eb2be-c5b111c9
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        description: This Pod hosts components github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService.
+      creationTimestamp: null
+      labels:
+        serviceweaver/app: onlineboutique
+        serviceweaver/name: onlineboutique-recommendation-4c4eb2be-c5b111c9
+        serviceweaver/version: 4c4eb2be
+      namespace: default
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  serviceweaver/name: onlineboutique-recommendation-4c4eb2be-c5b111c9
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      containers:
+      - args:
+        - babysitter
+        - /weaver/weaver.toml
+        - /weaver/config.textpb
+        - github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService
+        image: docker.io/pserey/onlineboutique:4c4eb2be
+        imagePullPolicy: IfNotPresent
+        name: serviceweaver
+        resources:
+          limits:
+            cpu: "1"
+          requests:
+            cpu: 100m
+        stdin: true
+        tty: true
+        volumeMounts:
+        - mountPath: /weaver/weaver.toml
+          name: config
+          subPath: weaver.toml
+        - mountPath: /weaver/config.textpb
+          name: config
+          subPath: config.textpb
+      dnsPolicy: ClusterFirst
+      serviceAccountName: default
+      volumes:
+      - configMap:
+          name: config-4c4eb2be
+        name: config
+status: {}
+
+---
+
+# Autoscaler for group recommendation
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+    description: This HorizontalPodAutoscaler scales the "onlineboutique-recommendation-4c4eb2be-c5b111c9"
+      Deployment.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-recommendation-4c4eb2be-c5b111c9
+  namespace: default
+spec:
+  behavior:
+    scaleDown:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 50
+      - periodSeconds: 60
+        type: Pods
+        value: 2
+      selectPolicy: Max
+      stabilizationWindowSeconds: 300
+    scaleUp:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 100
+      - periodSeconds: 60
+        type: Pods
+        value: 4
+      selectPolicy: Max
+      stabilizationWindowSeconds: 0
+  maxReplicas: 10
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 60
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: onlineboutique-recommendation-4c4eb2be-c5b111c9
+status:
+  currentMetrics: null
+  desiredReplicas: 0
+
+---
+
+# Deployment for group shipping
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    description: This Deployment hosts components github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-shipping-4c4eb2be-b627ec3f
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      serviceweaver/name: onlineboutique-shipping-4c4eb2be-b627ec3f
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        description: This Pod hosts components github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService.
+      creationTimestamp: null
+      labels:
+        serviceweaver/app: onlineboutique
+        serviceweaver/name: onlineboutique-shipping-4c4eb2be-b627ec3f
+        serviceweaver/version: 4c4eb2be
+      namespace: default
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  serviceweaver/name: onlineboutique-shipping-4c4eb2be-b627ec3f
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+      containers:
+      - args:
+        - babysitter
+        - /weaver/weaver.toml
+        - /weaver/config.textpb
+        - github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService
+        image: docker.io/pserey/onlineboutique:4c4eb2be
+        imagePullPolicy: IfNotPresent
+        name: serviceweaver
+        resources:
+          limits:
+            cpu: "1"
+          requests:
+            cpu: 100m
+        stdin: true
+        tty: true
+        volumeMounts:
+        - mountPath: /weaver/weaver.toml
+          name: config
+          subPath: weaver.toml
+        - mountPath: /weaver/config.textpb
+          name: config
+          subPath: config.textpb
+      dnsPolicy: ClusterFirst
+      serviceAccountName: default
+      volumes:
+      - configMap:
+          name: config-4c4eb2be
+        name: config
+status: {}
+
+---
+
+# Autoscaler for group shipping
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+    description: This HorizontalPodAutoscaler scales the "onlineboutique-shipping-4c4eb2be-b627ec3f"
+      Deployment.
+  creationTimestamp: null
+  labels:
+    serviceweaver/app: onlineboutique
+    serviceweaver/version: 4c4eb2be
+  name: onlineboutique-shipping-4c4eb2be-b627ec3f
+  namespace: default
+spec:
+  behavior:
+    scaleDown:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 50
+      - periodSeconds: 60
+        type: Pods
+        value: 2
+      selectPolicy: Max
+      stabilizationWindowSeconds: 300
+    scaleUp:
+      policies:
+      - periodSeconds: 60
+        type: Percent
+        value: 100
+      - periodSeconds: 60
+        type: Pods
+        value: 4
+      selectPolicy: Max
+      stabilizationWindowSeconds: 0
+  maxReplicas: 10
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 60
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: onlineboutique-shipping-4c4eb2be-b627ec3f
 status:
   currentMetrics: null
   desiredReplicas: 0
