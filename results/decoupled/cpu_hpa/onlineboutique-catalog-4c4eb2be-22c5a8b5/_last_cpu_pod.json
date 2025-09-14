@@ -1,0 +1,1 @@
+{"status":"success","data":{"resultType":"vector","result":[{"metric":{"pod":"onlineboutique-catalog-4c4eb2be-22c5a8b5-bd8cd58c4-tblbh"},"value":[1757891287.094,"0.0536022787800981"]},{"metric":{"pod":"onlineboutique-catalog-4c4eb2be-22c5a8b5-bd8cd58c4-s942n"},"value":[1757891287.094,"0.053887921895080584"]}]}}

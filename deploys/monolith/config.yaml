@@ -5,8 +5,52 @@ listeners:
   - name: boutique
     public: true
 
+# Global container resources for every group
+resourceSpec:
+  requests:
+    cpu: "100m"   # lowered to fit single-node VM
+  limits:
+    cpu: "1"
+
+# Global HPA policy
+scalingSpec: &scaling_default
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 60
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      selectPolicy: Max
+      policies:
+        - type: Percent
+          value: 100
+          periodSeconds: 60
+        - type: Pods
+          value: 4
+          periodSeconds: 60
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      selectPolicy: Max
+      policies:
+        - type: Percent
+          value: 50
+          periodSeconds: 60
+        - type: Pods
+          value: 2
+          periodSeconds: 60
+
 groups:
   - name: monolith
+    # keep minReplicas=1 initially to avoid Pending; bump later if you have headroom
+    scalingSpec:
+      <<: *scaling_default
+      minReplicas: 1
     components:
       - github.com/ServiceWeaver/onlineboutique/cartservice/CartService
       - github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService

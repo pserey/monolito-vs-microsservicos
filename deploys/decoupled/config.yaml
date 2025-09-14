@@ -5,6 +5,48 @@ listeners:
   - name: boutique
     public: true
 
+# Global container resources (applies to all services)
+resourceSpec:
+  requests:
+    cpu: "100m"   # lowered to fit single-node VM
+  limits:
+    cpu: "1"
+
+# Global HPA policy (per-group HPAs will inherit this)
+scalingSpec: &scaling_default
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 60
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      selectPolicy: Max
+      policies:
+        - type: Percent
+          value: 100
+          periodSeconds: 60
+        - type: Pods
+          value: 4
+          periodSeconds: 60
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      selectPolicy: Max
+      policies:
+        - type: Percent
+          value: 50
+          periodSeconds: 60
+        - type: Pods
+          value: 2
+          periodSeconds: 60
+
+# One group per service; all inherit the global scalingSpec above.
+# (If later you want minReplicas: 2 for hot paths, copy the block and set minReplicas: 2.)
 groups:
   - name: frontend
     components:
