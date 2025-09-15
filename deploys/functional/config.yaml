@@ -1,0 +1,81 @@
+appConfig: weaver.toml
+repo: docker.io/pserey
+
+listeners:
+  - name: boutique
+    public: true
+
+# Global container resources (applies to all groups)
+resourceSpec:
+  requests:
+    cpu: "100m"
+  limits:
+    cpu: "1"
+
+# Global HPA policy (all groups inherit unless overridden)
+scalingSpec: &scaling_default
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 60
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      selectPolicy: Max
+      policies:
+        - type: Percent
+          value: 100
+          periodSeconds: 60
+        - type: Pods
+          value: 4
+          periodSeconds: 60
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      selectPolicy: Max
+      policies:
+        - type: Percent
+          value: 50
+          periodSeconds: 60
+        - type: Pods
+          value: 2
+          periodSeconds: 60
+
+# ---------- Functional groups ----------
+groups:
+  # Edge/UI
+  - name: edge
+    scalingSpec:
+      <<: *scaling_default
+      minReplicas: 2
+    components:
+      - github.com/ServiceWeaver/weaver/Main
+
+  # Cart/session layer
+  - name: cart
+    components:
+      - github.com/ServiceWeaver/onlineboutique/cartservice/CartService
+      - github.com/ServiceWeaver/onlineboutique/cartservice/cartCache
+
+  # Ordering pipeline (checkout + payments + shipping + customer comms + currency)
+  - name: ordering
+    scalingSpec:
+      <<: *scaling_default
+      minReplicas: 2
+    components:
+      - github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService
+      - github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService
+      - github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService
+      - github.com/ServiceWeaver/onlineboutique/emailservice/EmailService
+      - github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService
+
+  # Catalog / discovery
+  - name: catalog
+    components:
+      - github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService
+      - github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService
+      - github.com/ServiceWeaver/onlineboutique/adservice/AdService
