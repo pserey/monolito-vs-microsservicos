@@ -1,72 +1,69 @@
-# Avaliação Comparativa de Desempenho entre Monólito e Microsserviços
+# ServiceWeaver Online Boutique – Experimentos de Escalabilidade
 
-Este repositório contém a proposta e o planejamento de um experimento que compara o desempenho entre **arquiteturas monolíticas** e **de microsserviços** em um sistema web de e-commerce. O estudo é baseado na aplicação **[OnlineBoutique](https://github.com/GoogleCloudPlatform/microservices-demo)**, adaptada com o framework **[Service Weaver](https://serviceweaver.dev/)**, e executada em ambiente Kubernetes.
+Este repositório contém a configuração e os resultados experimentais dos testes realizados com a aplicação **Online Boutique** utilizando [ServiceWeaver](https://serviceweaver.dev/), Kubernetes, Prometheus e Locust.
 
----
+## 📌 Objetivos do Experimento
+- Comparar três estratégias de deploy: **Monólito**, **Desacoplado (Microserviços)** e **Agrupamento Funcional (Híbrido)**.
+- Medir diferenças de **latência**, **throughput** e **comportamento de escalonamento** (via HPA).
+- Entender os trade-offs entre **simplicidade, modularidade e desempenho**.
 
-## Objetivo
+## ⚙️ Ambiente
+- **Cluster:** Minikube em VM Ubuntu Server (VirtualBox)  
+- **Monitoramento:** Prometheus + kube-state-metrics  
+- **Geração de carga:** Locust (modo headless)  
+- **Escalonamento:** Horizontal Pod Autoscaler (HPA) configurado com:
+  - `requests.cpu: 100m`
+  - `limits.cpu: 1`
+  - `averageUtilization: 60%`
 
-O experimento busca avaliar, de forma empírica, como diferentes granularidades arquiteturais impactam:
+O acesso aos serviços foi feito via **NodePort** ou `minikube tunnel`.
 
-- **Latência (tempo de resposta)** percebida pelo usuário  
-- **Consumo de CPU** como métrica de custo computacional  
-- **Escalabilidade automática** via Horizontal Pod Autoscaler (HPA)  
+## 📂 Deployments Testados
+1. **Monólito**  
+   Todos os serviços em um único grupo de deployment.
 
----
+2. **Desacoplado (Microserviços)**  
+   Cada serviço em seu próprio pod, com escalonamento independente.
 
-## Justificativa
+3. **Agrupamento Funcional (Híbrido)**  
+   Serviços agrupados por fluxo de negócio:
+   - `edge`: frontend
+   - `cart`: serviço de carrinho + cache
+   - `ordering`: checkout, pagamento, envio, e-mail, câmbio
+   - `catalog`: catálogo de produtos, recomendação, anúncios
 
-Apesar da popularidade dos microsserviços, ainda não há consenso claro sobre qual abordagem é mais eficiente em termos de custo-benefício e desempenho. Muitas migrações são feitas por tendências de mercado sem avaliação quantitativa.  
-Este projeto propõe uma análise **neutra e controlada**, evidenciando os contextos em que cada arquitetura pode se mostrar mais vantajosa.
+Cada estratégia utilizou seu próprio `config.yaml` gerado com o ServiceWeaver.
 
----
+## 🚀 Teste de Carga
+A carga foi aplicada com o Locust em modo headless.  
+Exemplo de execução para o deploy **funcional**:
 
-## Escopo do Experimento
+```bash
+locust -f ./load-testing/locustfile.py \
+  --host http://192.168.56.101:12345 \
+  --headless \
+  -u 200 \
+  -r 20 \
+  -t 15m \
+  --csv results/functional/locust/functional_run \
+  BoutiqueUser
+```
 
-- Aplicação: **OnlineBoutique** (versão Go + Service Weaver)  
-- Ambiente: **Kubernetes** em infraestrutura de nuvem privada (Oracle Cloud free-tier / OpenStack)  
-- Estratégias de implantação analisadas:  
-  - **Monolítica** – todos os serviços em um único contêiner  
-  - **Totalmente distribuída** – cada serviço em seu próprio contêiner  
-  - **Agrupamento por funcionalidade** – serviços organizados conforme domínio e acoplamento  
+* `-u 200` → 200 usuários concorrentes
+* `-r 20` → 20 novos usuários por segundo
+* `-t 15m` → duração de 15 minutos
+* `--csv` → exporta métricas em formato estruturado
 
----
+Comandos semelhantes foram executados para os deploys **monólito** e **desacoplado**, com resultados armazenados em `results/<deploy>/`.
 
-## Tecnologias Utilizadas
+## 📊 Métricas Coletadas
 
-- **Framework:** Service Weaver  
-- **Orquestração:** Kubernetes (via Minikube)  
-- **Containers:** Docker  
-- **Escalabilidade:** Horizontal Pod Autoscaler (HPA)  
-- **Carga de testes:** [Locust.io](https://locust.io/)  
-- **Monitoramento:** [Prometheus](https://prometheus.io/) + kube-state-metrics  
+* **Latência** (média, P95, P99)
+* **Throughput** (req/s)
+* **Uso de CPU** (por pod e agregado)
+* **Escalonamento do HPA** (máximo, atual e desejado de réplicas)
 
----
-
-## Critérios de Comparação
-
-- **Latência** – tempo de resposta coletado com Locust  
-- **Uso de CPU** – monitorado pelo Prometheus  
-- **Escalabilidade automática** – número de réplicas geradas pelo HPA  
-
----
-
-## Ferramentas de Medição
-
-- **Locust**: geração de carga e medição de latência  
-- **Prometheus**: coleta periódica de métricas do cluster  
-- **kube-state-metrics**: monitoramento do número de réplicas  
-
----
-
-## Estrutura do Projeto
-
-- **docs/** → Proposta detalhada e planejamento do experimento  
-- **k8s/** → Manifests para deployment no Kubernetes  
-- **scripts/** → Automação de testes e coleta de métricas  
-- **results/** → Resultados dos experimentos (logs, gráficos, tabelas)  
-
----
+As métricas foram extraídas do Prometheus via scripts customizados para `.csv` e depois visualizadas em gráficos.
 
 ## Referências
 
