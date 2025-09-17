@@ -1,0 +1,177 @@
+---
+title: "Monolith vs. Microservices: CPU, Latency & Throughput Analysis"
+author: "Jotinha"
+output: pdf_document
+fontsize: 11pt
+geometry: margin=1in
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+# 1. Pacotes e utilitários
+
+```{r packages}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(readr)
+library(here)
+library(lubridate)
+```
+
+# 2. Carregamento dos dados
+
+```{r helpers}
+# ajuste os caminhos se necessário
+df_cpu <- read_csv(here("merged_all.csv"))
+df_locust <- read_csv(here("merged_locust.csv"))
+
+# nomes fixos das colunas
+cpu_metric_col <- "cores"   # ajuste para o nome correto no merged_all
+latency_col    <- "total_median_response_time"
+throughput_col <- "req_s"
+
+```
+
+# 3. CPU
+
+## 3.1 Entre arquiteturas
+```{r load-data}
+df_cpu %>%
+  group_by(architecture) %>%
+  summarise(
+    cpu_mean   = mean(.data[[cpu_metric_col]], na.rm = TRUE),
+    cpu_median = median(.data[[cpu_metric_col]], na.rm = TRUE),
+    cpu_p95    = quantile(.data[[cpu_metric_col]], 0.95, na.rm = TRUE)
+  )
+
+df_cpu %>%
+  ggplot(aes(x = architecture, y = .data[[cpu_metric_col]], fill = architecture)) +
+  geom_violin(trim = TRUE) +
+  geom_boxplot(width = 0.15, outlier.shape = NA) +
+  labs(title = "Distribuição de CPU por arquitetura",
+       x = "Arquitetura", y = "CPU") +
+  theme_minimal()
+
+```
+
+## 3.2 Entre serviços (somente microarquiteturas)
+
+```{r parse-time-columns}
+df_cpu %>%
+  filter(architecture %in% c("decoupled", "functional")) %>%
+  group_by(architecture, service) %>%
+  summarise(
+    cpu_mean = mean(.data[[cpu_metric_col]], na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  arrange(architecture, desc(cpu_mean))
+
+df_cpu %>%
+  filter(architecture %in% c("decoupled", "functional")) %>%
+  group_by(architecture, service) %>%
+  summarise(cpu_mean = mean(.data[[cpu_metric_col]], na.rm = TRUE), .groups = "drop") %>%
+  ggplot(aes(x = reorder(service, cpu_mean), y = cpu_mean, fill = architecture)) +
+  geom_col(position = "dodge") +
+  coord_flip() +
+  labs(title = "CPU média por serviço (apenas microarquiteturas)",
+       x = "Serviço", y = "CPU média") +
+  theme_minimal()
+```
+
+# 3.3 Réplicas — comparação entre serviços (microarquiteturas)
+
+```{r replicas-summary}
+df_cpu %>%
+  filter(architecture %in% c("decoupled", "functional")) %>%
+  group_by(architecture, service) %>%
+  summarise(
+    max_repl     = max(max_replicas, na.rm = TRUE),
+    mean_desired = mean(desired_replicas, na.rm = TRUE),
+    mean_current = mean(current_replicas, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  arrange(architecture, desc(mean_current))
+
+df_cpu %>%
+  filter(architecture %in% c("decoupled", "functional")) %>%
+  group_by(architecture, service) %>%
+  summarise(
+    mean_desired = mean(desired_replicas, na.rm = TRUE),
+    mean_current = mean(current_replicas, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  pivot_longer(cols = c(mean_desired, mean_current),
+               names_to = "replica_type", values_to = "replicas") %>%
+  ggplot(aes(x = service, y = replicas, fill = replica_type)) +
+  geom_col(position = "dodge") +
+  facet_wrap(~ architecture, scales = "free_x") +
+  coord_flip() +
+  labs(title = "Média de réplicas por serviço (microarquiteturas)",
+       x = "Serviço", y = "Número médio de réplicas",
+       fill = "Tipo") +
+  theme_minimal()
+```
+
+```{r}
+df_cpu %>%
+  filter(architecture %in% c("decoupled", "functional")) %>%
+  mutate(diff_desired_current = desired_replicas - current_replicas) %>%
+  group_by(architecture, service) %>%
+  summarise(
+    mean_diff = mean(diff_desired_current, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = reorder(service, mean_diff), y = mean_diff, fill = architecture)) +
+  geom_col(position = "dodge") +
+  coord_flip() +
+  labs(title = "Diferença média (desired - current) por serviço",
+       x = "Serviço", y = "Diferença média de réplicas") +
+  theme_minimal()
+
+```
+
+
+## 4. Latência (Locust)
+
+```{r select-metrics}
+df_locust %>%
+  group_by(architecture) %>%
+  summarise(
+    latency_mean   = mean(.data[[latency_col]], na.rm = TRUE),
+    latency_median = median(.data[[latency_col]], na.rm = TRUE),
+    latency_p95    = quantile(.data[[latency_col]], 0.95, na.rm = TRUE)
+  )
+
+df_locust %>%
+  ggplot(aes(x = architecture, y = .data[[latency_col]], fill = architecture)) +
+  geom_violin(trim = TRUE) +
+  geom_boxplot(width = 0.15, outlier.shape = NA) +
+  labs(title = "Distribuição da latência por arquitetura (Locust)",
+       x = "Arquitetura", y = "Latência (ms)") +
+  theme_minimal()
+
+```
+
+## 5. Throughput (Locust)
+
+```{r}
+df_locust %>%
+  group_by(architecture) %>%
+  summarise(
+    thr_mean   = mean(.data[[throughput_col]], na.rm = TRUE),
+    # thr_median = median(.data[[throughput_col]], na.rm = TRUE),
+    thr_p95    = quantile(.data[[throughput_col]], 0.95, na.rm = TRUE)
+  )
+
+df_locust %>%
+  ggplot(aes(x = architecture, y = .data[[throughput_col]], fill = architecture)) +
+  geom_violin(trim = TRUE) +
+  geom_boxplot(width = 0.15, outlier.shape = NA) +
+  labs(title = "Distribuição do throughput por arquitetura (Locust)",
+       x = "Arquitetura", y = "Requests/s") +
+  theme_minimal()
+```
+
