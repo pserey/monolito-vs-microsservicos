@@ -1,6 +1,7 @@
 ---
 title: "Monolith vs. Microservices: CPU, Latency & Throughput Analysis"
-author: "Jotinha"
+author: "Projeto de Arquitetura de Software
+"
 output: pdf_document
 fontsize: 11pt
 geometry: margin=1in
