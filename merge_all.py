@@ -12,7 +12,7 @@ for arch in architectures:
     if arch_dir.exists():
         # ---------- cpu_hpa ----------
         if arch == "monolith":
-            mono_dir = arch_dir / "monolith"
+            mono_dir = arch_dir 
             service_dfs = []
 
             for file in mono_dir.glob("*.csv"):
