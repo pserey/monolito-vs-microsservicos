@@ -24,13 +24,13 @@ library(lubridate)
 # 2. Carregamento dos dados
 
 ```{r helpers}
-# ajuste os caminhos se necessário
+# ajuste o path dos results
 df_cpu <- read_csv(here("merged_all.csv"))
 df_locust <- read_csv(here("merged_locust.csv"))
 
 # nomes fixos das colunas
 cpu_metric_col <- "cores"   # ajuste para o nome correto no merged_all
-latency_col    <- "total_median_response_time"
+latency_col    <- "total_median_response_time" # ajuste para o nome correto no merge_locust
 throughput_col <- "req_s"
 
 ```
