@@ -65,6 +65,86 @@ Comandos semelhantes foram executados para os deploys **monólito** e **desacopl
 
 As métricas foram extraídas do Prometheus via scripts customizados para `.csv` e depois visualizadas em gráficos.
 
+## 🧑‍🔬 Como Rodar os Experimentos
+
+A seguir estão os passos para preparar o ambiente dentro da máquina virtual, criar o cluster Kubernetes com **Minikube** e executar cada experimento de deploy (monólito, desacoplado ou funcional).
+
+### 1. Pré-requisitos
+
+Certifique-se de que sua VM (Ubuntu Server) tenha os seguintes pacotes instalados:
+
+- [Minikube](https://minikube.sigs.k8s.io/docs/start/)  
+- [kubectl](https://kubernetes.io/docs/tasks/tools/)  
+- [Helm](https://helm.sh/docs/intro/install/)  
+- [ServiceWeaver CLI](https://serviceweaver.dev/)  
+- Prometheus + kube-state-metrics (monitoramento)
+
+> 💡 Dica: o stack de monitoramento pode ser instalado via Helm chart do `kube-prometheus-stack`.
+
+### 2. Criar o cluster Minikube
+
+```bash
+minikube start --driver=docker
+```
+
+Verifique se o cluster está ativo:
+
+```bash
+kubectl get nodes
+```
+
+### 4. Limpar recursos antigos
+
+Antes de rodar um novo experimento, remova qualquer deploy anterior do Online Boutique (o stack de monitoramento continua ativo):
+
+```bash
+kubectl delete deploy,svc,hpa,cm,role,rolebinding -l serviceweaver/app=onlineboutique --ignore-not-found
+kubectl delete rs,pod -l serviceweaver/app=onlineboutique --ignore-not-found
+```
+
+### 5. Gerar e aplicar manifests
+
+Use o ServiceWeaver para gerar os manifests Kubernetes a partir do `config.yaml` desejado (monólito, desacoplado ou funcional):
+
+```bash
+weaver kube deploy config-functional.yaml
+```
+
+Troque `config-functional.yaml` pelo config do experimento que deseja rodar:
+
+* `config-monolith.yaml`
+* `config-decoupled.yaml`
+* `config-functional.yaml`
+
+Esse comando vai gerar um arquivo começando com `kube_` em `/tmp`. Rode o comando abaixo com ele para aplicar no seu cluster:
+
+```bash
+kubectl apply -f /tmp/kube_a349nbd.yaml
+```
+
+### 6. Acompanhar a inicialização
+
+Verifique os recursos criados:
+
+```bash
+kubectl get deploy,svc,hpa -l serviceweaver/app=onlineboutique
+```
+> O nome do `svc` vai ser utilizado posteriormente para expor o serviço na rede.
+
+E acompanhe os pods subindo:
+
+```bash
+kubectl get pods -l serviceweaver/app=onlineboutique -w
+```
+
+Depois que os pods estiverem **Running**, exponha o cluster para fora da VM com:
+
+```bash
+kubectl port-forward --address=0.0.0.0 svc/<nome-do-svc> 8888:80
+```
+
+Agora é possível acessar o serviço em `{vm-ip}:8888`, iniciar os testes de carga com o **Locust** e coletar métricas no Prometheus. 🎯
+
 ## Referências
 
 - GoogleCloudPlatform. *microservices-demo*. Disponível em: [GitHub](https://github.com/GoogleCloudPlatform/microservices-demo)  
