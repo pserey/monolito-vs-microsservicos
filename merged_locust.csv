@@ -1,4 +1,4 @@
-Timestamp,User Count,Type,Name,req_s,Failures/s,50%,66%,75%,80%,90%,95%,98%,99%,99.9%,99.99%,100%,Total Request Count,Total Failure Count,total_median_response_time,Total Average Response Time,Total Min Response Time,Total Max Response Time,Total Average Content Size,architecture
+timestamp,user_count,Type,Name,req_s,Failures/s,50%,66%,75%,80%,90%,95%,98%,99%,99.9%,99.99%,100%,total_request_count,total_failure_count,total_median_response_time,total_average_response_time,Total Min Response Time,Total Max Response Time,Total Average Content Size,architecture
 1757890391,0,,Aggregated,0.0,0.0,,,,,,,,,,,,0,0,0.0,0.0,0.0,0.0,0.0,decoupled
 1757890392,20,,Aggregated,0.0,0.0,95.0,140.0,160.0,180.0,240.0,250.0,260.0,260.0,260.0,260.0,260.0,41,0,95.0,122.2485341458218,30.066299994359724,256.2858999881428,9608.024390243903,decoupled
 1757890393,60,,Aggregated,0.0,0.0,99.0,140.0,200.0,220.0,240.0,250.0,260.0,260.0,260.0,260.0,260.0,81,0,99.0,127.47559382743346,6.002900001476519,260.05490000534337,9785.074074074077,decoupled
